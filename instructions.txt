@@ -1,0 +1,40 @@
+
+1. Run the sql script in the database of your choice. Currently it's create a table
+  in a database called [Jer] but you can change that.
+
+2. Update the RDL file to report manager (or report server), and configure the
+   connection details for where you created the table in step 1
+
+3. Run the repoirt, click hyperlinks as you find them.
+
+
+How it works
+------------
+
+The report contains 3 datasets:
+  1) To update the answer of your choice according to its parameter settings,
+     ONLY WHEN the value of the Action parameter = "Update"
+  2) To update the entire table and set all the answers back to null,
+     ONLY WHEN the value of the Action parameter = "Delete"
+  3) To query the couurent contents of the table
+
+The ordering of these is important. Or at least the fact that the query runs
+after any updates/DML.
+
+In data source properties - "Use single transaction when processing the queries"
+is ticked. THis is important, to ensure that the various bits of SQL runn the
+order I want them to.
+
+The report contains 3 hidden paramaters. By default, the one which matters, and
+makes it simply show the current contents of the table, Action is set to "Query".
+
+When you click tany of the hyperlinks on the report, it executes another instance
+of the same report, but passing in some different (hidden) paramaters which control
+any DML actions which'll happen before it then queries back the new contents of the 
+table.
+
+
+When is doesn't work too well
+-----------------------------
+
+If you click the "back" button, or refresh your browser, what happens then.
