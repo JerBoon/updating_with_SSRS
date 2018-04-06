@@ -61,6 +61,37 @@ statement in SQL terms - it's just updating all your answers back to NULL.
 
 ![query2](https://user-images.githubusercontent.com/23141865/38447160-af9fe1bc-39f3-11e8-8c6b-1d1ea59b89f8.png)
 
+**Step 3**: SELECT the data back again.
+
+This needs to be added *after* the update statements, because it needs to run in order to refresh the report display after the changes. It's also why you ticked that little tickbox in step 1. That enforces that the 3 bits of SQL you've entered run in sequence, one after the other.
+
+It's just a simle select to query the contents of the table. You don't need to see a screenshot.
+
+**Step 4**: Configure the parameters.
+
+If you expand Paramaters in the Report Data pane, you'll see 3 new parameters. They're for you, or rather the report to do its job. They're not for the users to see and interact with. So they're all marked as hidden.
+
+Also, the default values need to be set.
+
+In the case of the Action parameter we set the default to "Query". This value doesn't actually perform any special additional actions, it's just something other than "Update" or "Delete" which will. We only want that to hapen later.
+
+For the other 2 parameters we've just given them a default value so that the report will run without complaining.
+
+**Step 5**: Now build the layout
+
+In the report canvas, add a tablix with some fields. You know the form. It's nothing special..
+
+Except of course it is. You'll see I've also added 4 extra placeholders. 3 in the response field, and 1 in the footer:
+
+![canvas](https://user-images.githubusercontent.com/23141865/38447450-3ed7725e-39f5-11e8-8a0a-fd5fcffca2b1.png)
+
+Here's where all the real action takes place.
+
+The 3 placeholders in the response section control the 3 hyperlinks which will appear when a response has not yet been given.
+
+
+
+
 
 
 ![rep2](https://user-images.githubusercontent.com/23141865/38379098-98cd7028-38f7-11e8-8910-011167dcbdc5.png)
