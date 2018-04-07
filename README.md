@@ -89,11 +89,30 @@ Here's where all the real action takes place.
 
 The 3 placeholders in the response section control the 3 hyperlinks which will appear when a response has not yet been given.
 
+I'll describe the [Y] placeholder:
 
+The placeholder value is a function defined as:
+=iif(isnothing(Fields!Q_Response.Value), "Yes ","")
 
+And it's *Actions* property describes a hyperlink which execute another instance of _this_ report:
 
+![actions](https://user-images.githubusercontent.com/23141865/38453272-bc437832-3a4a-11e8-9619-7435a930f85f.png)
 
+The placeholders for the No and Maybe responses work in much the same way. As does the hyperlink in the footer of the tablix. The only clever part of that is the visibility test for that tablix row - which only shows the footer if all the responses have been completed.
 
 ![rep2](https://user-images.githubusercontent.com/23141865/38379098-98cd7028-38f7-11e8-8910-011167dcbdc5.png)
+
+**Step 6**: Run the report
+
+The report won't entirely run in Report Builder, since the value of Globals!ReportName won't be correctly set. You'll need to save the report in report manager, and then run it from there.
+
+Then magically, every time you click on one of the hyperlinks in the report, it will run a new instance of itself, but passing in new parameters, which control the bits of SQL you wrote earlier.
+
+Hopefully that all makes sense?
+
+
+
+
+
 
 ![rep3](https://user-images.githubusercontent.com/23141865/38379097-989a2146-38f7-11e8-920c-481581743462.png)
